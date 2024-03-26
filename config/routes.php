@@ -113,6 +113,7 @@ return function (RouteBuilder $routes): void {
         });
     });
 
+/*
     $routes->prefix('Api', function (RouteBuilder $builder) {
         $builder->scope('/', function (RouteBuilder $builder) {
             $builder->setExtensions(['json', 'xml', 'xlsx']);
@@ -120,5 +121,6 @@ return function (RouteBuilder $routes): void {
             $builder->fallbacks(DashedRoute::class);
         });
     });
+*/
 
 };
