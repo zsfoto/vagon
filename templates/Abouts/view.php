@@ -4,6 +4,7 @@
  * @var \App\Model\Entity\About $about
  */
 ?>
+	<?php $this->assign('active', 'home') ?>
 	<?= $this->element('hero') ?>
 
 	<main id="main">

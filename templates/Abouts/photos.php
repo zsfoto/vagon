@@ -1,4 +1,5 @@
 	<?= $this->element('breadcrumb', ['title' => $text->name ?? __('Photos')]) ?>
+	<?php $this->assign('active', 'photos') ?>
 
 	<main id="main">
 
@@ -31,8 +32,10 @@
 				<div class="portfolio-info">
 				  <h4><?= $photo->name ?? __('Photo title') ?></h4>
 				  <p><?= $photo->body ?? '' ?></p>
-				  <a href="/img/photos/portfolio-<?= $photo->id ?>.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="<?= $photo->name ?? __('Photo title') ?>"><i class="bx bx-plus"></i></a>
+				  <a href="/img/photos/portfolio-<?= $photo->id ?>.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="<?= $photo->name ?? __('Photo title') ?>"><i class="bi bi-eye"></i></a>
+<?php /*
 				  <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
+*/ ?>
 				</div>
 			  </div>
 

@@ -78,18 +78,36 @@ class PartnersTable extends Table
             ->notEmptyString('email');
 
         $validator
+            ->scalar('url')
+            ->maxLength('url', 250)
+            ->requirePresence('url', 'create')
+            ->notEmptyString('url');
+
+        $validator
             ->scalar('details')
             ->requirePresence('details', 'create')
             ->notEmptyString('details');
 
         $validator
+            ->nonNegativeInteger('delay')
+            ->notEmptyString('delay');
+
+        $validator
+            ->boolean('show_in_main_page')
+            ->notEmptyString('show_in_main_page');
+
+        $validator
+            ->scalar('filename')
+            ->maxLength('filename', 250)
+            ->requirePresence('filename', 'create')
+            ->notEmptyString('filename');
+
+        $validator
             ->boolean('visible')
-            ->requirePresence('visible', 'create')
             ->notEmptyString('visible');
 
         $validator
             ->integer('pos')
-            ->requirePresence('pos', 'create')
             ->notEmptyString('pos');
 
         return $validator;

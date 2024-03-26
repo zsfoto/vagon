@@ -13,7 +13,11 @@ use Cake\ORM\Entity;
  * @property string $address
  * @property string $phone
  * @property string $email
+ * @property string $url
  * @property string $details
+ * @property int $delay
+ * @property bool $show_in_main_page
+ * @property string $filename
  * @property bool $visible
  * @property int $pos
  * @property \Cake\I18n\DateTime $created
@@ -35,7 +39,11 @@ class Partner extends Entity
         'address' => true,
         'phone' => true,
         'email' => true,
+        'url' => true,
         'details' => true,
+        'delay' => true,
+        'show_in_main_page' => true,
+        'filename' => true,
         'visible' => true,
         'pos' => true,
         'created' => true,

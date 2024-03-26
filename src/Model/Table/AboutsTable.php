@@ -69,17 +69,25 @@ class AboutsTable extends Table
         $validator
             ->scalar('phone')
             ->maxLength('phone', 30)
-            ->requirePresence('phone', 'create')
-            ->notEmptyString('phone');
+            ->allowEmptyString('phone');
 
         $validator
             ->email('email')
-            ->requirePresence('email', 'create')
-            ->notEmptyString('email');
+            ->allowEmptyString('email');
 
         $validator
             ->scalar('address')
             ->allowEmptyString('address');
+
+        $validator
+            ->scalar('google_description')
+            ->maxLength('google_description', 1000)
+            ->allowEmptyString('google_description');
+
+        $validator
+            ->scalar('google_keywords')
+            ->maxLength('google_keywords', 1000)
+            ->allowEmptyString('google_keywords');
 
         $validator
             ->scalar('twitter_url')
@@ -102,34 +110,38 @@ class AboutsTable extends Table
             ->allowEmptyString('linkedin_url');
 
         $validator
+            ->scalar('about_us_title')
+            ->maxLength('about_us_title', 150)
+            ->allowEmptyString('about_us_title');
+
+        $validator
+            ->scalar('about_us_body')
+            ->allowEmptyString('about_us_body');
+
+        $validator
             ->scalar('main_title')
             ->maxLength('main_title', 150)
-            ->requirePresence('main_title', 'create')
-            ->notEmptyString('main_title');
+            ->allowEmptyString('main_title');
 
         $validator
             ->scalar('main_body')
             ->maxLength('main_body', 1000)
-            ->requirePresence('main_body', 'create')
-            ->notEmptyString('main_body');
+            ->allowEmptyString('main_body');
 
         $validator
             ->scalar('main_button_title')
             ->maxLength('main_button_title', 50)
-            ->requirePresence('main_button_title', 'create')
-            ->notEmptyString('main_button_title');
+            ->allowEmptyString('main_button_title');
 
         $validator
             ->scalar('main_button_link')
             ->maxLength('main_button_link', 100)
-            ->requirePresence('main_button_link', 'create')
-            ->notEmptyString('main_button_link');
+            ->allowEmptyString('main_button_link');
 
         $validator
             ->scalar('our_services_title')
             ->maxLength('our_services_title', 250)
-            ->requirePresence('our_services_title', 'create')
-            ->notEmptyString('our_services_title');
+            ->allowEmptyString('our_services_title');
 
         $validator
             ->scalar('our_services_body')
@@ -139,13 +151,72 @@ class AboutsTable extends Table
         $validator
             ->scalar('our_customers_title')
             ->maxLength('our_customers_title', 100)
-            ->requirePresence('our_customers_title', 'create')
-            ->notEmptyString('our_customers_title');
+            ->allowEmptyString('our_customers_title');
 
         $validator
             ->scalar('our_customers_body')
             ->maxLength('our_customers_body', 1000)
             ->allowEmptyString('our_customers_body');
+
+        $validator
+            ->scalar('features_title')
+            ->maxLength('features_title', 150)
+            ->allowEmptyString('features_title');
+
+        $validator
+            ->scalar('features_body')
+            ->allowEmptyString('features_body');
+
+        $validator
+            ->scalar('features_subtitle_1')
+            ->maxLength('features_subtitle_1', 100)
+            ->allowEmptyString('features_subtitle_1');
+
+        $validator
+            ->scalar('features_body_1')
+            ->maxLength('features_body_1', 250)
+            ->allowEmptyString('features_body_1');
+
+        $validator
+            ->scalar('features_subtitle_2')
+            ->maxLength('features_subtitle_2', 100)
+            ->allowEmptyString('features_subtitle_2');
+
+        $validator
+            ->scalar('features_body_2')
+            ->maxLength('features_body_2', 250)
+            ->allowEmptyString('features_body_2');
+
+        $validator
+            ->scalar('features_subtitle_3')
+            ->maxLength('features_subtitle_3', 100)
+            ->allowEmptyString('features_subtitle_3');
+
+        $validator
+            ->scalar('features_body_3')
+            ->maxLength('features_body_3', 250)
+            ->allowEmptyString('features_body_3');
+
+        $validator
+            ->scalar('features_subtitle_4')
+            ->maxLength('features_subtitle_4', 100)
+            ->allowEmptyString('features_subtitle_4');
+
+        $validator
+            ->scalar('features_body_4')
+            ->maxLength('features_body_4', 250)
+            ->allowEmptyString('features_body_4');
+
+        $validator
+            ->scalar('partners_title')
+            ->maxLength('partners_title', 150)
+            ->requirePresence('partners_title', 'create')
+            ->notEmptyString('partners_title');
+
+        $validator
+            ->scalar('partners_body')
+            ->requirePresence('partners_body', 'create')
+            ->notEmptyString('partners_body');
 
         return $validator;
     }

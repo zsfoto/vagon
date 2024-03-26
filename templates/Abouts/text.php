@@ -5,6 +5,7 @@
  */
 ?>
 	<?= $this->element('breadcrumb', ['title' => $text->name ?? __('Text')]) ?>
+	<?php $this->assign('active', 'text') ?>
 
 	<main id="main">
 

@@ -1,4 +1,6 @@
 	<?= $this->element('breadcrumb', ['title' => $text->name ?? __('Contact')]) ?>
+	
+	<?php $this->assign('active', 'contact') ?>
 
 	<main id="main">
 

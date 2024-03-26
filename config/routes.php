@@ -55,8 +55,7 @@ return function (RouteBuilder $routes): void {
          * its action called 'display', and we pass a param to select the view file
          * to use (in this case, templates/Pages/home.php)...
          */
-        $builder->connect('/*', ['controller' => 'Abouts', 'action' => 'view']);
-
+        $builder->connect('/', 						['controller' => 'Abouts', 'action' => 'view']);
 
         $builder->connect('/about-us/*', 			['controller' => 'Abouts', 'action' => 'about']);
         $builder->connect('/photos/*',				['controller' => 'Abouts', 'action' => 'photos']);
@@ -65,7 +64,7 @@ return function (RouteBuilder $routes): void {
         $builder->connect('/terms-of-service/*', 	['controller' => 'Abouts', 'action' => 'text', 'terms-of-service']);
         $builder->connect('/privacy-policy/*', 		['controller' => 'Abouts', 'action' => 'text', 'privacy-policy']);
 		
-        $builder->connect('/contact/*', 				['controller' => 'Messages', 'action' => 'add']);
+        $builder->connect('/contact/*', 			['controller' => 'Messages', 'action' => 'add']);
 		
 		
         /*
@@ -104,4 +103,22 @@ return function (RouteBuilder $routes): void {
      * });
      * ```
      */
+
+	 
+    $routes->prefix('Admin', function (RouteBuilder $builder) {
+        $builder->scope('/', function (RouteBuilder $builder) {
+            //$builder->setExtensions(['json', 'xml', 'xlsx']);
+            $builder->connect('/', ['controller' => 'Abouts', 'action' => 'edit', 'hu']);
+            $builder->fallbacks(DashedRoute::class);
+        });
+    });
+
+    $routes->prefix('Api', function (RouteBuilder $builder) {
+        $builder->scope('/', function (RouteBuilder $builder) {
+            $builder->setExtensions(['json', 'xml', 'xlsx']);
+            $builder->connect('/', ['controller' => 'Orders', 'action' => 'index']);            
+            $builder->fallbacks(DashedRoute::class);
+        });
+    });
+
 };

@@ -10,10 +10,11 @@
 
       <nav id="navbar" class="navbar">
         <ul>
-          <li><a class="active" href="/"><?= _('Home') ?></a></li>
-          <li><a href="/about-us"><?= _('About Us') ?></a></li>
-          <li><a href="/photos"><?= _('Photos') ?></a></li>
-          <li><a href="/our-partners"><?= _('Partners') ?></a></li>
+		 
+          <li><a<?php if(null !== $this->fetch('active') && $this->fetch('active') == 'home'){echo ' class="active"';} ?> href="/"><?= _('Home') ?></a></li>
+          <li><a<?php if(null !== $this->fetch('active') && $this->fetch('active') == 'about'){echo ' class="active"';} ?> href="/about-us"><?= _('About Us') ?></a></li>
+          <li><a<?php if(null !== $this->fetch('active') && $this->fetch('active') == 'photos'){echo ' class="active"';} ?> href="/photos"><?= _('Photos') ?></a></li>
+          <li><a<?php if(null !== $this->fetch('active') && $this->fetch('active') == 'partners'){echo ' class="active"';} ?> href="/partners"><?= _('Partners') ?></a></li>
 <?php /*
           <li><a href="pricing.html">Pricing</a></li>
           <li><a href="portfolio.html">Portfolio</a></li>
@@ -36,7 +37,7 @@
             </ul>
           </li>
 */ ?>
-          <li><a href="/contact"><?= _('Contact') ?></a></li>
+          <li><a<?php if(null !== $this->fetch('active') && $this->fetch('active') == 'contact'){echo ' class="active"';} ?> href="/contact"><?= _('Contact') ?></a></li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
