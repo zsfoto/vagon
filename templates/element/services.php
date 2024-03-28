@@ -1,4 +1,4 @@
-
+<?php if(isset($services) && $services->count() > 0) { ?>
 		<!-- ======= Services Section ======= -->
 		<section id="services" class="services">
 			<div class="container">
@@ -33,3 +33,4 @@ foreach($services as $service){
 
 			</div>
 		</section><!-- End Services Section -->
+<?php } ?>

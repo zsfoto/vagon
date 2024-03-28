@@ -43,6 +43,11 @@ class AppController extends Controller
 
         $this->loadComponent('Flash');
 
+		$lang = 'hu';
+		$about = $this->fetchTable('Abouts')->find('all', conditions: ['lang' => $lang])->first();
+		$services = $this->fetchTable('Services')->find('all', conditions: ['lang' => $lang], order: ['pos' => 'asc']);
+		$this->set(compact('about', 'services'));
+
         /*
          * Enable the following component for recommended CakePHP form protection settings.
          * see https://book.cakephp.org/4/en/controllers/components/form-protection.html

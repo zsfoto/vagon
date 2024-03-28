@@ -20,10 +20,7 @@ class MessagesController extends AppController
     public function initialize(): void
     {
         parent::initialize();
-		$lang = 'hu';
-		$about = $this->fetchTable('Abouts')->find('all', conditions: ['lang' => $lang])->first();
-		$services = $this->fetchTable('Services')->find('all', conditions: ['lang' => $lang], order: ['pos' => 'asc']);
-		$this->set(compact('about', 'services'));
+		$this->loadComponent('Captcha');
 	}
 
     /**
@@ -35,15 +32,27 @@ class MessagesController extends AppController
     {
         $message = $this->Messages->newEmptyEntity();
         if ($this->request->is('post')) {
-            $message = $this->Messages->patchEntity($message, $this->request->getData());
-            if ($this->Messages->save($message)) {
-                $this->Flash->success(__('The message has been saved.'));
-
-                return $this->redirect(['action' => 'index']);
-            }
-            $this->Flash->error(__('The message could not be saved. Please, try again.'));
+			$error = false;
+			$data = $this->request->getData();
+			
+            $message = $this->Messages->patchEntity($message, $data);
+			if(!$error){
+				if ($this->Messages->save($message)) {
+					
+					// Email...
+					
+					
+					
+					
+					$this->Flash->success(__('The message has been saved.'));
+					
+					return $this->redirect(['action' => 'add']);
+				}
+				$this->Flash->error(__('The message could not be saved. Please, try again.'));
+			}
         }
-        $this->set(compact('message'));
+		$captcha = $this->Captcha->generateCaptcha(3);
+        $this->set(compact('message', 'captcha'));
     }
 
 }

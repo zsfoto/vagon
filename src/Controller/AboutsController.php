@@ -20,10 +20,10 @@ class AboutsController extends AppController
     public function initialize(): void
     {
         parent::initialize();
-		$lang = 'hu';
-		$about = $this->Abouts->find('all', conditions: ['lang' => $lang])->first();
-		$services = $this->fetchTable('Services')->find('all', conditions: ['lang' => $lang], order: ['pos' => 'asc']);
-		$this->set(compact('about', 'services'));
+		//$lang = 'hu';
+		//$about = $this->Abouts->find('all', conditions: ['lang' => $lang])->first();
+		//$services = $this->fetchTable('Services')->find('all', conditions: ['lang' => $lang], order: ['pos' => 'asc']);
+		//$this->set(compact('about', 'services'));
 	}
 
 

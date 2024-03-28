@@ -1448,12 +1448,16 @@ section {
 }
 
 .contact .php-email-form .error-message {
-  display: none;
+  /* display: none; */
+  /*
   color: #fff;
   background: #ed3c0d;
   text-align: left;
   padding: 15px;
   font-weight: 600;
+  */
+  font-size: 13px;
+  color: red;
 }
 
 .contact .php-email-form .error-message br+br {
@@ -1493,6 +1497,7 @@ section {
   border-radius: 0;
   box-shadow: none;
   font-size: 14px;
+  font-weight: bold;
 }
 
 .contact .php-email-form input {

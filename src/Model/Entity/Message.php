@@ -33,6 +33,7 @@ class Message extends Entity
         'email' => true,
         'subject' => true,
         'body' => true,
+        'captcha' => true,
         'readed' => true,
         'created' => true,
         'modified' => true,

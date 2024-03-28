@@ -1,4 +1,4 @@
-
+<?php if(isset($clients) && $clients->count() > 0) { ?>
     <!-- ======= Our Clients Section ======= -->
     <section id="clients" class="clients">
 		<div class="container">
@@ -20,3 +20,4 @@
 			</div>
 		</div>
     </section><!-- End Our Clients Section -->
+<?php } ?>

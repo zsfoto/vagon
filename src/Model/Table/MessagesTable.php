@@ -7,6 +7,7 @@ use Cake\ORM\Query\SelectQuery;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
+use Cake\Http\Session;
 
 /**
  * Messages Model
@@ -29,6 +30,8 @@ use Cake\Validation\Validator;
  */
 class MessagesTable extends Table
 {
+	public $captcha = '';
+
     /**
      * Initialize method
      *
@@ -44,6 +47,8 @@ class MessagesTable extends Table
         $this->setPrimaryKey('id');
 
         $this->addBehavior('Timestamp');
+		
+		$this->captcha = (new Session())->read('captcha');
     }
 
     /**
@@ -72,15 +77,45 @@ class MessagesTable extends Table
             ->notEmptyString('subject');
 
         $validator
+            ->scalar('captcha')
+            ->maxLength('captcha', 10)
+            ->requirePresence('captcha', 'create')
+            ->notEmptyString('captcha');
+
+        $validator
             ->scalar('body')
             ->requirePresence('body', 'create')
             ->notEmptyString('body');
 
         $validator
             ->boolean('readed')
-            ->requirePresence('readed', 'create')
             ->notEmptyString('readed');
+
+
+		$validator
+            ->add('captcha', 'validCaptcha', [
+                'rule' => 'isValidCaptcha',
+                'message' => __('You entered a wrong security code'),
+                'provider' => 'table',
+            ]);	
+
 
         return $validator;
     }
+	
+    public function isValidCaptcha($value, array $context): bool
+    {
+		$value = strtoupper($value);
+		return $value === $this->captcha;
+    }
+	
+	//public function beforeSave(Event $event, EntityInterface $entity, ArrayObject $options)
+	public function beforeSave($options = array())
+	{
+		$data = $options->getData()['entity'];
+		$data['captcha'] = strtoupper($data['captcha']);
+		return $data->captcha === $this->captcha;
+	}	
+	
 }
+
