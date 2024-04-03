@@ -66,6 +66,12 @@ class Application extends BaseApplication
 			}
 			return $ip === '127.0.0.1';
 		});
+
+        $this->addPlugin(\CakeDC\Users\Plugin::class);
+        // Uncomment the line below to load your custom users.php config file
+        Configure::write('Users.config', ['users']);
+
+		$this->addPlugin('JeffAdmin5');
 		
     }
 

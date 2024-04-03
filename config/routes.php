@@ -61,6 +61,8 @@ return function (RouteBuilder $routes): void {
         $builder->connect('/photos/*',				['controller' => 'Abouts', 'action' => 'photos']);
 		
         $builder->connect('/services/*', 			['controller' => 'Abouts', 'action' => 'text', 'services']);
+        
+		$builder->connect('/cookies/*', 			['controller' => 'Abouts', 'action' => 'text', 'cookies']);
         $builder->connect('/terms-of-service/*', 	['controller' => 'Abouts', 'action' => 'text', 'terms-of-service']);
         $builder->connect('/privacy-policy/*', 		['controller' => 'Abouts', 'action' => 'text', 'privacy-policy']);
 		

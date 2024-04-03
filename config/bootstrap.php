@@ -230,6 +230,8 @@ ServerRequest::addDetector('tablet', function ($request) {
 //\Cake\I18n\FrozenDate::setToStringFormat('dd.MM.yyyy');
 //\Cake\I18n\FrozenTime::setToStringFormat('dd.MM.yyyy HH:mm');
 
+Configure::write('Bake.theme', 'jeffAdmin5');
+
 Configure::write('Session', [
     'defaults' => 'php',
     'cookie' => 'vagon',
