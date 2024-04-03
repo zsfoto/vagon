@@ -3,13 +3,16 @@ declare(strict_types=1);
 
 namespace App\Model\Entity;
 
+
 use Cake\ORM\Entity;
+use Cake\Core\Configure;
+use Cake\Http\Exception\NotFoundException;
+
 
 /**
  * Photocategory Entity
  *
  * @property int $id
- * @property int $photo_id
  * @property string $lang
  * @property string $name
  * @property bool $visible
@@ -32,12 +35,12 @@ class Photocategory extends Entity
      * @var array<string, bool>
      */
     protected array $_accessible = [
-        'photo_id' => true,
         'lang' => true,
         'name' => true,
         'visible' => true,
         'pos' => true,
         'photo_count' => true,
+        'photocategories_photo_count' => true,
         'created' => true,
         'modified' => true,
         'photos' => true,

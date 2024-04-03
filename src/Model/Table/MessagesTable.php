@@ -113,8 +113,12 @@ class MessagesTable extends Table
 	public function beforeSave($options = array())
 	{
 		$data = $options->getData()['entity'];
-		$data['captcha'] = strtoupper($data['captcha']);
-		return $data->captcha === $this->captcha;
+		if($data->readed){
+			return true;
+		} else {
+			$data['captcha'] = strtoupper($data['captcha']);
+			return $data->captcha === $this->captcha;			
+		}
 	}	
 	
 }

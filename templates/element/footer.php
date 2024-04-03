@@ -8,7 +8,7 @@
           <div class="col-lg-4 col-md-6 footer-contact">
             <h3><?= $about->name ?></h3>
             <p>
-			  <?= $about->address ?><br>
+			  <?= $this->Text->autoParagraph(h($about->address)); ?><br>
               <strong>Phone:</strong> <?= $about->phone ?><br>
               <strong>Email:</strong> <?= $about->email ?><br>
             </p>
@@ -21,6 +21,7 @@
               <li><i class="bx bx-chevron-right"></i> <a href="/about-us"><?= __('About us') ?></a></li>
               <li><i class="bx bx-chevron-right"></i> <a href="/services"><?= __('Services') ?></a></li>
               <li><i class="bx bx-chevron-right"></i> <a href="/contact"><?= __('Contacts') ?></a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="/cookies"><?= __('Cookies') ?></a></li>
               <li><i class="bx bx-chevron-right"></i> <a href="/terms-of-service"><?= __('Terms of service') ?></a></li>
               <li><i class="bx bx-chevron-right"></i> <a href="/privacy-policy"><?= __('Privacy policy') ?></a></li>
             </ul>

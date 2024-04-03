@@ -3,10 +3,14 @@ declare(strict_types=1);
 
 namespace App\Model\Table;
 
+
 use Cake\ORM\Query\SelectQuery;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
+use Cake\Core\Configure;
+use Cake\Http\Exception\NotFoundException;
+
 
 /**
  * Abouts Model
@@ -32,7 +36,7 @@ class AboutsTable extends Table
     /**
      * Initialize method
      *
-     * @param array<string, mixed> $config The configuration for the Table.
+     * @param array $config The configuration for the Table.
      * @return void
      */
     public function initialize(array $config): void
@@ -78,6 +82,11 @@ class AboutsTable extends Table
         $validator
             ->scalar('address')
             ->allowEmptyString('address');
+
+        $validator
+            ->scalar('google_map_url')
+            ->maxLength('google_map_url', 1000)
+            ->allowEmptyString('google_map_url');
 
         $validator
             ->scalar('google_description')
@@ -210,13 +219,11 @@ class AboutsTable extends Table
         $validator
             ->scalar('partners_title')
             ->maxLength('partners_title', 150)
-            ->requirePresence('partners_title', 'create')
-            ->notEmptyString('partners_title');
+            ->allowEmptyString('partners_title');
 
         $validator
             ->scalar('partners_body')
-            ->requirePresence('partners_body', 'create')
-            ->notEmptyString('partners_body');
+            ->allowEmptyString('partners_body');
 
         return $validator;
     }
@@ -230,7 +237,7 @@ class AboutsTable extends Table
      */
     public function buildRules(RulesChecker $rules): RulesChecker
     {
-        $rules->add($rules->isUnique(['lang']), ['errorField' => 'lang']);
+        $rules->add($rules->isUnique(['lang']), ['errorField' => '0']);
 
         return $rules;
     }

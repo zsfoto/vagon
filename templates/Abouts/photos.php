@@ -1,6 +1,12 @@
 	<?= $this->element('breadcrumb', ['title' => $text->name ?? __('Photos')]) ?>
 	<?php $this->assign('active', 'photos') ?>
 
+<?php /* foreach($photos as $photo) { ?>
+<?php } */ ?>
+
+<?php //debug($photocategories->toArray()); ?>
+<?php if(isset($photocategories) && !empty($photocategories->toArray())){ ?>
+
 	<main id="main">
 
 		<!-- ======= Portfolio Section ======= -->
@@ -27,12 +33,17 @@
 			<div class="row portfolio-container" data-aos="fade-up">
 
 <?php foreach($photos as $photo) { ?>
-			  <div class="col-lg-4 col-md-6 portfolio-item filter-<?= $photo->id ?>">
-				<img src="/img/photos/portfolio-<?= $photo->id ?>.jpg" class="img-fluid" alt="">
+<?php //debug($photo->file_ext); ?>
+			  <div class="col-lg-4 col-md-6 portfolio-item<?php 
+					foreach($photo->photocategories as $photocategory){
+						echo " filter-" . $photocategory->id;	
+					}
+				?>">
+				<img src="/img/photos/<?= $photo->id ?>.jpg" class="img-fluid" alt="">
 				<div class="portfolio-info">
 				  <h4><?= $photo->name ?? __('Photo title') ?></h4>
 				  <p><?= $photo->body ?? '' ?></p>
-				  <a href="/img/photos/portfolio-<?= $photo->id ?>.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="<?= $photo->name ?? __('Photo title') ?>"><i class="bi bi-eye"></i></a>
+				  <a href="/img/photos/<?= $photo->id ?>.<?= $photo->file_ext ?>" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="<?= $photo->name ?? __('Photo title') ?>"><i class="bi bi-eye"></i></a>
 <?php /*
 				  <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
 */ ?>
@@ -127,3 +138,6 @@
 		</section><!-- End Portfolio Section -->
 
 	</main><!-- End #main -->
+<?php } else { ?>
+	<h2 class="text-center p-5 m-5"><?= __('Empty gallery') ?></h2>
+<?php } ?>

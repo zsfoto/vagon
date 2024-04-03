@@ -3,10 +3,14 @@ declare(strict_types=1);
 
 namespace App\Model\Table;
 
+
 use Cake\ORM\Query\SelectQuery;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
+use Cake\Core\Configure;
+use Cake\Http\Exception\NotFoundException;
+
 
 /**
  * Partners Model
@@ -32,7 +36,7 @@ class PartnersTable extends Table
     /**
      * Initialize method
      *
-     * @param array<string, mixed> $config The configuration for the Table.
+     * @param array $config The configuration for the Table.
      * @return void
      */
     public function initialize(array $config): void
@@ -63,30 +67,25 @@ class PartnersTable extends Table
         $validator
             ->scalar('address')
             ->maxLength('address', 250)
-            ->requirePresence('address', 'create')
-            ->notEmptyString('address');
+            ->allowEmptyString('address');
 
         $validator
             ->scalar('phone')
             ->maxLength('phone', 20)
-            ->requirePresence('phone', 'create')
-            ->notEmptyString('phone');
+            ->allowEmptyString('phone');
 
         $validator
             ->email('email')
-            ->requirePresence('email', 'create')
-            ->notEmptyString('email');
+            ->allowEmptyString('email');
 
         $validator
             ->scalar('url')
             ->maxLength('url', 250)
-            ->requirePresence('url', 'create')
-            ->notEmptyString('url');
+            ->allowEmptyString('url');
 
         $validator
             ->scalar('details')
-            ->requirePresence('details', 'create')
-            ->notEmptyString('details');
+            ->allowEmptyString('details');
 
         $validator
             ->nonNegativeInteger('delay')
@@ -99,8 +98,7 @@ class PartnersTable extends Table
         $validator
             ->scalar('filename')
             ->maxLength('filename', 250)
-            ->requirePresence('filename', 'create')
-            ->notEmptyString('filename');
+            ->allowEmptyString('filename');
 
         $validator
             ->boolean('visible')

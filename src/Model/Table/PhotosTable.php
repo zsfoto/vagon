@@ -3,16 +3,19 @@ declare(strict_types=1);
 
 namespace App\Model\Table;
 
+
 use Cake\ORM\Query\SelectQuery;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
+use Cake\Core\Configure;
+use Cake\Http\Exception\NotFoundException;
+
 
 /**
  * Photos Model
  *
- * @property \App\Model\Table\PhotocategoriesTable&\Cake\ORM\Association\BelongsTo $Photocategories
- * @property \App\Model\Table\PhotocategoriesTable&\Cake\ORM\Association\HasMany $Photocategories
+ * @property \App\Model\Table\TestsTable&\Cake\ORM\Association\HasMany $Tests
  * @property \App\Model\Table\PhotocategoriesTable&\Cake\ORM\Association\BelongsToMany $Photocategories
  *
  * @method \App\Model\Entity\Photo newEmptyEntity()
@@ -30,14 +33,13 @@ use Cake\Validation\Validator;
  * @method iterable<\App\Model\Entity\Photo>|\Cake\Datasource\ResultSetInterface<\App\Model\Entity\Photo> deleteManyOrFail(iterable $entities, array $options = [])
  *
  * @mixin \Cake\ORM\Behavior\TimestampBehavior
- * @mixin \Cake\ORM\Behavior\CounterCacheBehavior
  */
 class PhotosTable extends Table
 {
     /**
      * Initialize method
      *
-     * @param array<string, mixed> $config The configuration for the Table.
+     * @param array $config The configuration for the Table.
      * @return void
      */
     public function initialize(array $config): void
@@ -49,15 +51,11 @@ class PhotosTable extends Table
         $this->setPrimaryKey('id');
 
         $this->addBehavior('Timestamp');
-        $this->addBehavior('CounterCache', [
-            'Photocategories' => ['photo_count'],
-        ]);
+        //$this->addBehavior('CounterCache', [
+        //    'Photocategories' => ['photo_count']
+        //]);
 
-        $this->belongsTo('Photocategories', [
-            'foreignKey' => 'photocategory_id',
-            'joinType' => 'INNER',
-        ]);
-        $this->hasMany('Photocategories', [
+        $this->hasMany('Tests', [
             'foreignKey' => 'photo_id',
         ]);
         $this->belongsToMany('Photocategories', [
@@ -76,10 +74,6 @@ class PhotosTable extends Table
     public function validationDefault(Validator $validator): Validator
     {
         $validator
-            ->nonNegativeInteger('photocategory_id')
-            ->notEmptyString('photocategory_id');
-
-        $validator
             ->scalar('lang')
             ->maxLength('lang', 3)
             ->notEmptyString('lang');
@@ -96,6 +90,16 @@ class PhotosTable extends Table
             ->notEmptyString('body');
 
         $validator
+            ->scalar('filename')
+            ->maxLength('filename', 250)
+            ->allowEmptyString('filename');
+
+        $validator
+            ->scalar('file_ext')
+            ->maxLength('file_ext', 10)
+            ->allowEmptyString('file_ext');
+
+        $validator
             ->boolean('visible')
             ->notEmptyString('visible');
 
@@ -105,23 +109,8 @@ class PhotosTable extends Table
 
         $validator
             ->integer('photocategory_count')
-            ->requirePresence('photocategory_count', 'create')
             ->notEmptyString('photocategory_count');
 
         return $validator;
-    }
-
-    /**
-     * Returns a rules checker object that will be used for validating
-     * application integrity.
-     *
-     * @param \Cake\ORM\RulesChecker $rules The rules object to be modified.
-     * @return \Cake\ORM\RulesChecker
-     */
-    public function buildRules(RulesChecker $rules): RulesChecker
-    {
-        $rules->add($rules->existsIn(['photocategory_id'], 'Photocategories'), ['errorField' => 'photocategory_id']);
-
-        return $rules;
     }
 }

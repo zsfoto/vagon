@@ -3,10 +3,14 @@ declare(strict_types=1);
 
 namespace App\Model\Table;
 
+
 use Cake\ORM\Query\SelectQuery;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
+use Cake\Core\Configure;
+use Cake\Http\Exception\NotFoundException;
+
 
 /**
  * Slides Model
@@ -32,7 +36,7 @@ class SlidesTable extends Table
     /**
      * Initialize method
      *
-     * @param array<string, mixed> $config The configuration for the Table.
+     * @param array $config The configuration for the Table.
      * @return void
      */
     public function initialize(array $config): void
@@ -54,6 +58,11 @@ class SlidesTable extends Table
      */
     public function validationDefault(Validator $validator): Validator
     {
+        $validator
+            ->scalar('lang')
+            ->maxLength('lang', 3)
+            ->notEmptyString('lang');
+
         $validator
             ->scalar('name')
             ->maxLength('name', 200)
@@ -79,12 +88,10 @@ class SlidesTable extends Table
 
         $validator
             ->boolean('visible')
-            ->requirePresence('visible', 'create')
             ->notEmptyString('visible');
 
         $validator
             ->integer('pos')
-            ->requirePresence('pos', 'create')
             ->notEmptyString('pos');
 
         return $validator;

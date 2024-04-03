@@ -3,7 +3,11 @@ declare(strict_types=1);
 
 namespace App\Model\Entity;
 
+
 use Cake\ORM\Entity;
+use Cake\Core\Configure;
+use Cake\Http\Exception\NotFoundException;
+
 
 /**
  * About Entity
@@ -14,6 +18,7 @@ use Cake\ORM\Entity;
  * @property string|null $phone
  * @property string|null $email
  * @property string|null $address
+ * @property string|null $google_map_url
  * @property string|null $google_description
  * @property string|null $google_keywords
  * @property string|null $twitter_url
@@ -40,8 +45,8 @@ use Cake\ORM\Entity;
  * @property string|null $features_body_3
  * @property string|null $features_subtitle_4
  * @property string|null $features_body_4
- * @property string $partners_title
- * @property string $partners_body
+ * @property string|null $partners_title
+ * @property string|null $partners_body
  * @property \Cake\I18n\DateTime $created
  * @property \Cake\I18n\DateTime $modified
  */
@@ -62,6 +67,7 @@ class About extends Entity
         'phone' => true,
         'email' => true,
         'address' => true,
+        'google_map_url' => true,
         'google_description' => true,
         'google_keywords' => true,
         'twitter_url' => true,

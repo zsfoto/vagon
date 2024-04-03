@@ -3,12 +3,17 @@ declare(strict_types=1);
 
 namespace App\Model\Entity;
 
+
 use Cake\ORM\Entity;
+use Cake\Core\Configure;
+use Cake\Http\Exception\NotFoundException;
+
 
 /**
  * Slide Entity
  *
  * @property int $id
+ * @property string $lang
  * @property string $name
  * @property string $body
  * @property string $button_title
@@ -30,6 +35,7 @@ class Slide extends Entity
      * @var array<string, bool>
      */
     protected array $_accessible = [
+        'lang' => true,
         'name' => true,
         'body' => true,
         'button_title' => true,

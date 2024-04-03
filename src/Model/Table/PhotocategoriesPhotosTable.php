@@ -3,10 +3,14 @@ declare(strict_types=1);
 
 namespace App\Model\Table;
 
+
 use Cake\ORM\Query\SelectQuery;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
+use Cake\Core\Configure;
+use Cake\Http\Exception\NotFoundException;
+
 
 /**
  * PhotocategoriesPhotos Model
@@ -35,7 +39,7 @@ class PhotocategoriesPhotosTable extends Table
     /**
      * Initialize method
      *
-     * @param array<string, mixed> $config The configuration for the Table.
+     * @param array $config The configuration for the Table.
      * @return void
      */
     public function initialize(array $config): void
@@ -94,8 +98,8 @@ class PhotocategoriesPhotosTable extends Table
      */
     public function buildRules(RulesChecker $rules): RulesChecker
     {
-        $rules->add($rules->existsIn(['photocategory_id'], 'Photocategories'), ['errorField' => 'photocategory_id']);
-        $rules->add($rules->existsIn(['photo_id'], 'Photos'), ['errorField' => 'photo_id']);
+        $rules->add($rules->existsIn(['photocategory_id'], 'Photocategories'), ['errorField' => '0']);
+        $rules->add($rules->existsIn(['photo_id'], 'Photos'), ['errorField' => '1']);
 
         return $rules;
     }

@@ -3,21 +3,25 @@ declare(strict_types=1);
 
 namespace App\Model\Entity;
 
+
 use Cake\ORM\Entity;
+use Cake\Core\Configure;
+use Cake\Http\Exception\NotFoundException;
+
 
 /**
  * Partner Entity
  *
  * @property int $id
  * @property string $name
- * @property string $address
- * @property string $phone
- * @property string $email
- * @property string $url
- * @property string $details
+ * @property string|null $address
+ * @property string|null $phone
+ * @property string|null $email
+ * @property string|null $url
+ * @property string|null $details
  * @property int $delay
  * @property bool $show_in_main_page
- * @property string $filename
+ * @property string|null $filename
  * @property bool $visible
  * @property int $pos
  * @property \Cake\I18n\DateTime $created
