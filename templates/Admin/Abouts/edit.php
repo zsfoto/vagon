@@ -40,12 +40,11 @@ $this->assign('title', __('Edit') . ' ' . __('About'));
 											<button class="nav-link" id="tabAddress" data-bs-toggle="tab" data-bs-target="#tabPanelAddress" type="button" role="tab" aria-controls="tabPanelAddress" aria-selected="false"><?= __('Address') ?></button>
 										</li>
 */ ?>
-
+<?php /*
 										<li class="nav-item" role="presentation">
 											<button class="nav-link" id="tabAboutUsBody" data-bs-toggle="tab" data-bs-target="#tabPanelAboutUsBody" type="button" role="tab" aria-controls="tabPanelAboutUsBody" aria-selected="false"><?= __('About Us Body') ?></button>
 										</li>
 
-<?php /*
 										<li class="nav-item" role="presentation">
 											<button class="nav-link" id="tabFeaturesBody" data-bs-toggle="tab" data-bs-target="#tabPanelFeaturesBody" type="button" role="tab" aria-controls="tabPanelFeaturesBody" aria-selected="false"><?= __('Features Body') ?></button>
 										</li>
@@ -67,7 +66,7 @@ $this->assign('title', __('Edit') . ' ' . __('About'));
 
 							</div>
 
-							<?= $this->Form->create($about, ['id' => 'main-form']) ?>
+							<?= $this->Form->create($about, ['id' => 'main-form', 'enctype' => 'multipart/form-data']) ?>
 							
 								<?php //= $this->Form->control('_csrfToken', ['name' => '_csrfToken', 'type' => 'hidden', 'value' => $this->request->getAttribute('csrfToken')] ) ?>
 
@@ -76,6 +75,8 @@ $this->assign('title', __('Edit') . ' ' . __('About'));
 									<div class="tab-content" id="tabContent">
 										
 										<div class="tab-pane fade show active" id="tabPanelMain" role="tabpanel" aria-labelledby="tabMain" tabindex="0">
+
+											<h4 class="text-center p-1" style="background-color: lightgray;"><?= __('Basic data') ?></h4>
 
 <?php /*
 											<!-- 2. STRING: lang: string  required -->
@@ -133,6 +134,9 @@ $this->assign('title', __('Edit') . ' ' . __('About'));
 												</div>
 											</div>
 
+
+											<h4 class="text-center p-1" style="background-color: lightgray;"><?= __('Google META') ?></h4>
+
 											<!-- 2. STRING: google_description: string  -->
 											<div class="mb-3 form-group row text required">
 												<label class="col-form-label col-md-2 pt-1 text-start text-md-end" for="google-description"><?= __('Google Description') ?>:</label>
@@ -150,6 +154,9 @@ $this->assign('title', __('Edit') . ' ' . __('About'));
 
 												</div>
 											</div>
+
+
+											<h4 class="text-center p-1" style="background-color: lightgray;"><?= __('Social media links') ?></h4>
 
 											<!-- 2. STRING: twitter_url: string  -->
 											<div class="mb-3 form-group row text required">
@@ -187,24 +194,8 @@ $this->assign('title', __('Edit') . ' ' . __('About'));
 												</div>
 											</div>
 
-											<!-- 2. STRING: about_us_title: string  -->
-											<div class="mb-3 form-group row text required">
-												<label class="col-form-label col-md-2 pt-1 text-start text-md-end" for="about-us-title"><?= __('About Us Title') ?>:</label>
-												<div class="col-md-9">
-													<?= $this->Form->control('about_us_title', ['label' => __('About Us Title'), 'class' => 'form-control', 'empty' => true]); ?>
-
-												</div>
-											</div>
+											<h4 class="text-center p-1" style="background-color: lightgray;"><?= __('Main block under the slide') ?></h4>
 											
-											<!-- 2. STRING: about_us_body: string  -->
-											<div class="mb-3 form-group row text required">
-												<label class="col-form-label col-md-2 pt-1 text-start text-md-end" for="about-us-body"><?= __('About Us Body') ?>:</label>
-												<div class="col-md-9">
-													<?= $this->Form->control('about_us_body', ['label' => __('About Us Title'), 'class' => 'form-control', 'empty' => true]); ?>
-
-												</div>
-											</div>
-
 											<!-- 2. STRING: main_title: string  -->
 											<div class="mb-3 form-group row text required">
 												<label class="col-form-label col-md-2 pt-1 text-start text-md-end" for="main-title"><?= __('Main Title') ?>:</label>
@@ -214,7 +205,6 @@ $this->assign('title', __('Edit') . ' ' . __('About'));
 												</div>
 											</div>
 
-											<hr>
 
 											<!-- 2. STRING: main_body: string  -->
 											<div class="mb-3 form-group row text required">
@@ -224,7 +214,7 @@ $this->assign('title', __('Edit') . ' ' . __('About'));
 
 												</div>
 											</div>
-
+											
 											<!-- 2. STRING: main_button_title: string  -->
 											<div class="mb-3 form-group row text required">
 												<label class="col-form-label col-md-2 pt-1 text-start text-md-end" for="main-button-title"><?= __('Main Button Title') ?>:</label>
@@ -243,7 +233,8 @@ $this->assign('title', __('Edit') . ' ' . __('About'));
 												</div>
 											</div>
 
-											<hr>
+
+											<h4 class="text-center p-1" style="background-color: lightgray;"><?= __('Our services block') ?></h4>
 
 											<!-- 2. STRING: our_services_title: string  -->
 											<div class="mb-3 form-group row text required">
@@ -263,27 +254,60 @@ $this->assign('title', __('Edit') . ' ' . __('About'));
 												</div>
 											</div>
 
-											<!-- 2. STRING: our_customers_title: string  -->
+
+
+
+
+											<h4 class="text-center p-1" style="background-color: lightgray;"><?= __('About us menu') ?></h4>
+
+
 											<div class="mb-3 form-group row text required">
-												<label class="col-form-label col-md-2 pt-1 text-start text-md-end" for="our-customers-title"><?= __('Our Customers Title') ?>:</label>
-												<div class="col-md-9">
-													<?= $this->Form->control('our_customers_title', ['label' => __('Our Customers Title'), 'class' => 'form-control', 'empty' => true]); ?>
+												<label class="col-form-label col-md-2 pt-1 text-start text-md-end required" for="file"><?= __('Left image beside about us') ?>:</label>
+												<div class="col-md-6">
+													<?= $this->Form->file('about_file', ['label' => __('Left image beside about us'), 'class' => 'form-control', 'empty' => false]); ?>
+
+												</div>
+												<div class="col-md-3 pt-2">
+													<span style="color: red; font-weight: bold;">jpg!!!</span>
 
 												</div>
 											</div>
 
-											<!-- 2. STRING: our_customers_body: string  -->
+<?php if(file_exists(WWW_ROOT . 'img' . DS . 'about' . DS . 'about.jpg')) { ?>
 											<div class="mb-3 form-group row text required">
-												<label class="col-form-label col-md-2 pt-1 text-start text-md-end" for="our-customers-body"><?= __('Our Customers Body') ?>:</label>
-												<div class="col-md-9">
-													<?= $this->Form->control('our_customers_body', ['label' => __('Our Customers Body'), 'class' => 'form-control', 'empty' => true]); ?>
+												<label class="col-form-label col-md-2 pt-1 text-start text-md-end required" for="file"><?= __('Uploaded') ?>:</label>
+												<div class="col-md-6">
+													<img src="/img/about/about.jpg" style="width: 160px;">
 
 												</div>
 											</div>
+<?php } ?>
+											
+
+											<!-- 2. STRING: about_us_title: string  -->
+											<div class="mb-3 form-group row text required">
+												<label class="col-form-label col-md-2 pt-1 text-start text-md-end" for="about-us-title"><?= __('About Us Title') ?>:</label>
+												<div class="col-md-9">
+													<?= $this->Form->control('about_us_title', ['label' => __('About Us Title'), 'class' => 'form-control', 'empty' => true]); ?>
+
+												</div>
+											</div>
+											
+											<!-- 2. STRING: about_us_body: string  -->
+											<div class="mb-3 form-group row text required">
+												<label class="col-form-label col-md-2 pt-1 text-start text-md-end" for="about-us-body"><?= __('About Us Body') ?>:</label>
+												<div class="col-md-9">
+													<?= $this->Form->control('about_us_body', ['label' => __('About Us Title'), 'class' => 'form-control', 'empty' => true]); ?>
+
+												</div>
+											</div>
+
+
+											<hr>
 
 											<!-- 2. STRING: features_title: string  -->
 											<div class="mb-3 form-group row text required">
-												<label class="col-form-label col-md-2 pt-1 text-start text-md-end" for="features-title"><?= __('Features Title') ?>:</label>
+												<label class="col-form-label col-md-2 pt-1 text-start text-md-end" for="features-title"><?= __('Our services title') ?>:</label>
 												<div class="col-md-9">
 													<?= $this->Form->control('features_title', ['label' => __('Features Title'), 'class' => 'form-control', 'empty' => true]); ?>
 
@@ -299,6 +323,11 @@ $this->assign('title', __('Edit') . ' ' . __('About'));
 												</div>
 											</div>
 
+
+											<hr>
+											
+											<h5 class="text-center"><?= __('Features TABs') ?></h5>
+											
 											<!-- 2. STRING: features_subtitle_1: string  -->
 											<div class="mb-3 form-group row text required">
 												<label class="col-form-label col-md-2 pt-1 text-start text-md-end" for="features-subtitle-1"><?= __('Features Subtitle 1') ?>:</label>
@@ -316,6 +345,30 @@ $this->assign('title', __('Edit') . ' ' . __('About'));
 
 												</div>
 											</div>
+
+											<div class="mb-3 form-group row text required">
+												<label class="col-form-label col-md-2 pt-1 text-start text-md-end required" for="file"><?= __('1. image') ?>:</label>
+												<div class="col-md-6">
+													<?= $this->Form->file('features_file_1', ['label' => __('1. image'), 'class' => 'form-control', 'empty' => false]); ?>
+
+												</div>
+												<div class="col-md-3 pt-2">
+													<span style="color: red; font-weight: bold;">jpg: 480px x 480px!!!</span>
+
+												</div>
+											</div>
+
+<?php if(file_exists(WWW_ROOT . 'img' . DS . 'about' . DS . 'about-1.jpg')) { ?>
+											<div class="mb-3 form-group row text required">
+												<label class="col-form-label col-md-2 pt-1 text-start text-md-end required" for="file"><?= __('1. Uploaded') ?>:</label>
+												<div class="col-md-6">
+													<img src="/img/about/about-1.jpg" style="width: 120px;">
+
+												</div>
+											</div>
+<?php } ?>
+
+											<hr>
 
 											<!-- 2. STRING: features_subtitle_2: string  -->
 											<div class="mb-3 form-group row text required">
@@ -335,6 +388,31 @@ $this->assign('title', __('Edit') . ' ' . __('About'));
 												</div>
 											</div>
 
+											<div class="mb-3 form-group row text required">
+												<label class="col-form-label col-md-2 pt-1 text-start text-md-end required" for="file"><?= __('2. image') ?>:</label>
+												<div class="col-md-6">
+													<?= $this->Form->file('features_file_2', ['label' => __('2. image'), 'class' => 'form-control', 'empty' => false]); ?>
+
+												</div>
+												<div class="col-md-3 pt-2">
+													<span style="color: red; font-weight: bold;">jpg: 480px x 480px!!!</span>
+
+												</div>
+											</div>
+
+<?php if(file_exists(WWW_ROOT . 'img' . DS . 'about' . DS . 'about-2.jpg')) { ?>
+											<div class="mb-3 form-group row text required">
+												<label class="col-form-label col-md-2 pt-1 text-start text-md-end required" for="file"><?= __('2. Uploaded') ?>:</label>
+												<div class="col-md-6">
+													<img src="/img/about/about-2.jpg" style="width: 120px;">
+
+												</div>
+											</div>
+<?php } ?>
+
+
+											<hr>
+
 											<!-- 2. STRING: features_subtitle_3: string  -->
 											<div class="mb-3 form-group row text required">
 												<label class="col-form-label col-md-2 pt-1 text-start text-md-end" for="features-subtitle-3"><?= __('Features Subtitle 3') ?>:</label>
@@ -352,6 +430,31 @@ $this->assign('title', __('Edit') . ' ' . __('About'));
 
 												</div>
 											</div>
+
+											<div class="mb-3 form-group row text required">
+												<label class="col-form-label col-md-2 pt-1 text-start text-md-end required" for="file"><?= __('3. image') ?>:</label>
+												<div class="col-md-6">
+													<?= $this->Form->file('features_file_3', ['label' => __('3. image'), 'class' => 'form-control', 'empty' => false]); ?>
+
+												</div>
+												<div class="col-md-3 pt-2">
+													<span style="color: red; font-weight: bold;">jpg: 480px x 480px!!!</span>
+
+												</div>
+											</div>
+
+<?php if(file_exists(WWW_ROOT . 'img' . DS . 'about' . DS . 'about-3.jpg')) { ?>
+											<div class="mb-3 form-group row text required">
+												<label class="col-form-label col-md-2 pt-1 text-start text-md-end required" for="file"><?= __('3. Uploaded') ?>:</label>
+												<div class="col-md-6">
+													<img src="/img/about/about-3.jpg" style="width: 120px;">
+
+												</div>
+											</div>
+<?php } ?>
+
+
+											<hr>
 
 											<!-- 2. STRING: features_subtitle_4: string  -->
 											<div class="mb-3 form-group row text required">
@@ -371,6 +474,32 @@ $this->assign('title', __('Edit') . ' ' . __('About'));
 												</div>
 											</div>
 
+											<div class="mb-3 form-group row text required">
+												<label class="col-form-label col-md-2 pt-1 text-start text-md-end required" for="file"><?= __('4. image') ?>:</label>
+												<div class="col-md-6">
+													<?= $this->Form->file('features_file_4', ['label' => __('4. image'), 'class' => 'form-control', 'empty' => false]); ?>
+
+												</div>
+												<div class="col-md-3 pt-2">
+													<span style="color: red; font-weight: bold;">jpg: 480px x 480px!!!</span>
+
+												</div>
+											</div>
+
+<?php if(file_exists(WWW_ROOT . 'img' . DS . 'about' . DS . 'about-4.jpg')) { ?>
+											<div class="mb-3 form-group row text required">
+												<label class="col-form-label col-md-2 pt-1 text-start text-md-end required" for="file"><?= __('4. Uploaded') ?>:</label>
+												<div class="col-md-6">
+													<img src="/img/about/about-4.jpg" style="width: 120px;">
+
+												</div>
+											</div>
+<?php } ?>
+
+
+
+											<h4 class="text-center p-1" style="background-color: lightgray;"><?= __('Partners menu') ?></h4>
+
 											<!-- 2. STRING: partners_title: string  -->
 											<div class="mb-3 form-group row text required">
 												<label class="col-form-label col-md-2 pt-1 text-start text-md-end" for="partners-title"><?= __('Partners Title') ?>:</label>
@@ -388,6 +517,7 @@ $this->assign('title', __('Edit') . ' ' . __('About'));
 
 												</div>
 											</div>
+
 
 										</div><!-- /.tabPanelMain -->
 										

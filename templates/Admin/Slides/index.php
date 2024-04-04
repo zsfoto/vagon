@@ -64,7 +64,6 @@ $config = array_merge($global_config, $local_config);
 <?php if($config['show_id']){ ?>
 											<th class="number id"><?= $this->Paginator->sort('id') ?></th>
 <?php } ?>
-											<th class="string lang"><?= $this->Paginator->sort('lang') ?></th><!-- H.1. -->
 											<th class="string name"><?= $this->Paginator->sort('name') ?></th><!-- H.1. -->
 											<th class="string button-title"><?= $this->Paginator->sort('button_title') ?></th><!-- H.1. -->
 											<th class="string button-link"><?= $this->Paginator->sort('button_link') ?></th><!-- H.1. -->
@@ -107,7 +106,6 @@ $config = array_merge($global_config, $local_config);
 <?php if($config['show_id']){ ?>
 											<td class="number id" value="<?= $slide->id ?>"><?= h($slide->id) ?><a name="<?= $slide->id ?>"></a></td>
 <?php } ?>
-											<td class="string lang" value="<?= $slide->lang ?>"><?= h($slide->lang) ?></td>
 											<td class="string name" value="<?= $slide->name ?>"><?= h($slide->name) ?></td>
 											<td class="string button-title" value="<?= $slide->button_title ?>"><?= h($slide->button_title) ?></td>
 											<td class="string button-link" value="<?= $slide->button_link ?>"><?= h($slide->button_link) ?></td>

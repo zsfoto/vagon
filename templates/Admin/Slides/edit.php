@@ -35,11 +35,11 @@ $this->assign('title', __('Edit') . ' ' . __('Slide'));
 											<button class="nav-link active" id="tabMain" data-bs-toggle="tab" data-bs-target="#tabPanelMain" type="button" role="tab" aria-controls="tabPanelMain" aria-selected="true"><?= __('Basic data') ?></button>
 										</li>
 
+<?php /*
 										<li class="nav-item" role="presentation">
 											<button class="nav-link" id="tabBody" data-bs-toggle="tab" data-bs-target="#tabPanelBody" type="button" role="tab" aria-controls="tabPanelBody" aria-selected="false"><?= __('Body') ?></button>
 										</li>
 
-<?php /*
 										<li class="nav-item" role="presentation">
 											<button class="nav-link" id="tabSecond" data-bs-toggle="tab" data-bs-target="#tabPanelSecond" type="button" role="tab" aria-controls="tabPanelSecond" aria-selected="false"><?= __('Memo') ?></button>
 										</li>
@@ -53,7 +53,7 @@ $this->assign('title', __('Edit') . ' ' . __('Slide'));
 
 							</div>
 
-							<?= $this->Form->create($slide, ['id' => 'main-form']) ?>
+							<?= $this->Form->create($slide, ['id' => 'main-form', 'enctype' => 'multipart/form-data']) ?>
 							
 								<?php //= $this->Form->control('_csrfToken', ['name' => '_csrfToken', 'type' => 'hidden', 'value' => $this->request->getAttribute('csrfToken')] ) ?>
 
@@ -63,6 +63,7 @@ $this->assign('title', __('Edit') . ' ' . __('Slide'));
 										
 										<div class="tab-pane fade show active" id="tabPanelMain" role="tabpanel" aria-labelledby="tabMain" tabindex="0">
 
+<?php /*
 											<!-- 2. STRING: lang: string  required -->
 											<div class="mb-3 form-group row text required">
 												<label class="col-form-label col-md-2 pt-1 text-start text-md-end required" for="lang"><?= __('Lang') ?>:</label>
@@ -71,12 +72,44 @@ $this->assign('title', __('Edit') . ' ' . __('Slide'));
 
 												</div>
 											</div>
+*/ ?>
+
+											<div class="mb-3 form-group row">
+												<label class="col-form-label col-md-2 pt-1 text-start text-md-end" for="file"><?= __('Slide image') ?>:</label>
+												<div class="col-md-6">
+													<?= $this->Form->file('file', ['label' => __('Slide image'), 'class' => 'form-control', 'empty' => true]); ?>
+
+												</div>
+												<div class="col-md-3 pt-2">
+													<span style="color: red; font-weight: bold;"> jpg: 1920px x 1080px!!!</span>
+
+												</div>
+											</div>
+
+<?php if(file_exists(WWW_ROOT . 'img' . DS . 'slide' . DS . 'slide-' . $slide->id . '.jpg')) { ?>
+											<div class="mb-3 form-group row">
+												<label class="col-form-label col-md-2 pt-1 text-start text-md-end" for="file"><?= __('Uploaded') ?>:</label>
+												<div class="col-md-6">
+													<img src="/img/slide/slide-<?= $slide->id ?>.jpg" style="width: 300px;">
+
+												</div>
+											</div>
+<?php } ?>
 
 											<!-- 2. STRING: name: string  required -->
 											<div class="mb-3 form-group row text required">
 												<label class="col-form-label col-md-2 pt-1 text-start text-md-end required" for="name"><?= __('Name') ?>:</label>
 												<div class="col-md-9">
 													<?= $this->Form->control('name', ['label' => __('Name'), 'class' => 'form-control', 'empty' => false, 'autofocus' => true]); ?>
+
+												</div>
+											</div>
+
+											<!-- TEXT -->
+											<div class="mb-3 form-group row text required">
+												<label class="col-form-label col-md-2 pt-1 text-start text-md-end required" for="button-title"><?= __('Text') ?>:</label>
+												<div class="col-md-9">
+													<?= $this->Form->control('body', ['id' => 'body', 'label' => false, 'class' => 'form-control', 'empty' => false]); ?>
 
 												</div>
 											</div>
@@ -120,6 +153,7 @@ $this->assign('title', __('Edit') . ' ' . __('Slide'));
 										</div><!-- /.tabPanelMain -->
 										
 										
+<?php /*											
 										<!-- TabPanel: tabPanelBody -->
 										<!-- 10. TEXT: body: text  required -->
 										<div class="tab-pane fade" id="tabPanelBody" role="tabpanel" aria-labelledby="tabBody" tabindex="0">
@@ -131,7 +165,6 @@ $this->assign('title', __('Edit') . ' ' . __('Slide'));
 											</div>
 										</div><!-- /.TabPanel: tabPanelBody -->
 
-<?php /*											
 										<div class="tab-pane fade" id="tabPanelMore" role="tabpanel" aria-labelledby="tabMore" tabindex="0">
 											<h3>More content come here...</h3>
 
@@ -200,7 +233,7 @@ $this->assign('title', __('Edit') . ' ' . __('Slide'));
 <?php $this->Html->scriptStart(['block' => 'javaScriptBottom']); ?>
 
 	jeffAdminInitInputSpinner()
-	jeffAdminInitSummerNote('body', 400, '<?= __("Here you can write the note") ?>...') // Init SummerNote for body.
+	//jeffAdminInitSummerNote('body', 400, '<?= __("Here you can write the note") ?>...') // Init SummerNote for body.
 	jeffAdminInitICheck('icheckbox_flat-blue');
 
 	$('#button-submit').click( function(){

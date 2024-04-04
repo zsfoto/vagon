@@ -134,7 +134,6 @@ class AboutsTable extends Table
 
         $validator
             ->scalar('main_body')
-            ->maxLength('main_body', 1000)
             ->allowEmptyString('main_body');
 
         $validator
@@ -154,7 +153,6 @@ class AboutsTable extends Table
 
         $validator
             ->scalar('our_services_body')
-            ->maxLength('our_services_body', 1000)
             ->allowEmptyString('our_services_body');
 
         $validator
@@ -164,7 +162,6 @@ class AboutsTable extends Table
 
         $validator
             ->scalar('our_customers_body')
-            ->maxLength('our_customers_body', 1000)
             ->allowEmptyString('our_customers_body');
 
         $validator

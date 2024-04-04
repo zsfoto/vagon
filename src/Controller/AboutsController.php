@@ -37,8 +37,8 @@ class AboutsController extends AppController
     public function view($lang = 'hu')
     {		
 		//$lang = 'hu';
-		$slides = $this->fetchTable('Slides')->find('all', conditions: ['lang' => $lang], order: ['pos' => 'asc']);
-		$clients = $this->fetchTable('Clients')->find('all', conditions: ['lang' => $lang, 'show_in_mainpage' =>true], order: ['pos' => 'asc']);
+		$slides = $this->fetchTable('Slides')->find('all', conditions: ['lang' => $lang, 'visible' => true], order: ['pos' => 'asc']);
+		$clients = $this->fetchTable('Clients')->find('all', conditions: ['lang' => $lang, 'visible' => true, 'show_in_mainpage' =>true], order: ['pos' => 'asc']);
         $this->set(compact('slides', 'clients'));
     }
 

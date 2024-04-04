@@ -16,6 +16,7 @@ use Cake\Http\Exception\NotFoundException;
  */
 class SlidesController extends AppController
 {
+	public $photopath = WWW_ROOT . 'img' . DS . 'slide' . DS;
 
     /**
      * Initialize controller
@@ -25,6 +26,10 @@ class SlidesController extends AppController
     public function initialize(): void
     {
         parent::initialize();
+
+		if(!file_exists($this->photopath)){
+			mkdir($this->photopath);
+		}
 
 	}
 
@@ -192,8 +197,22 @@ class SlidesController extends AppController
 		$this->set('title', __('Add new') . ': ' . __('slide') . ' ' . __('record'));
         $slide = $this->Slides->newEmptyEntity();
         if ($this->request->is('post')) {
-            $slide = $this->Slides->patchEntity($slide, $this->request->getData());
+			$data = $this->request->getData();
+            $slide = $this->Slides->patchEntity($slide, $data);
             if ($this->Slides->save($slide)) {
+				
+				$i = 0;
+				$filename[$i] = $data['file']->getClientFilename();
+				$type[$i] 	 = $data['file']->getclientMediaType();					
+				if($filename[$i] !== ''){
+					if($type[$i] == 'image/jpeg'){
+						if(file_exists($this->photopath . 'slide-' . $slide->id . '.jpg')){
+							unlink($this->photopath . 'slide-' . $slide->id . '.jpg');
+						}
+						$data['file']->moveTo($this->photopath . 'slide-' . $slide->id . '.jpg');
+					}
+				}
+				
                 $this->Flash->success(__('The slide has been saved.'), ['plugin' => 'JeffAdmin5']);
 				$this->session->write('Layout.' . $this->controller . '.LastId', $slide->id);
 
@@ -218,8 +237,22 @@ class SlidesController extends AppController
 		
         $slide = $this->Slides->get($id, contain: []);
         if ($this->request->is(['patch', 'post', 'put'])) {
-            $slide = $this->Slides->patchEntity($slide, $this->request->getData());
+			$data = $this->request->getData();
+            $slide = $this->Slides->patchEntity($slide, $data);
             if ($this->Slides->save($slide)) {
+
+				$i = 0;
+				$filename[$i] = $data['file']->getClientFilename();
+				$type[$i] 	 = $data['file']->getclientMediaType();					
+				if($filename[$i] !== ''){
+					if($type[$i] == 'image/jpeg'){
+						if(file_exists($this->photopath . 'slide-' . $slide->id . '.jpg')){
+							unlink($this->photopath . 'slide-' . $slide->id . '.jpg');
+						}
+						$data['file']->moveTo($this->photopath . 'slide-' . $slide->id . '.jpg');
+					}
+				}
+
                 $this->Flash->success(__('The slide has been saved.'), ['plugin' => 'JeffAdmin5']);
 
                 //return $this->redirect(['action' => 'index']);

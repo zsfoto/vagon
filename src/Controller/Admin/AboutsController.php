@@ -17,6 +17,8 @@ use Cake\Http\Exception\NotFoundException;
 class AboutsController extends AppController
 {
 
+	public $photopath = WWW_ROOT . 'img' . DS . 'about' . DS;
+
     /**
      * Initialize controller
      *
@@ -25,6 +27,10 @@ class AboutsController extends AppController
     public function initialize(): void
     {
         parent::initialize();
+
+		if(!file_exists($this->photopath)){
+			mkdir($this->photopath);
+		}
 
 	}
 
@@ -222,13 +228,82 @@ class AboutsController extends AppController
      */
     public function edit($id = null)
     {
+		$filename = [];
+		$type 	  = [];
+		
+		$filename_1 = '';
+		$filename_2 = '';
+		$filename_3 = '';
+		$filename_4 = '';
+		$ext_1 		= '';
+		$ext_2 		= '';
+		$ext_3 		= '';
+		$ext_4 		= '';
+		
 		$this->set('title', __('Edit the') . ': ' . __('about') . ' ' . __('record'));
 		$this->session->write('Layout.' . $this->controller . '.LastId', $id);
 		
         $about = $this->Abouts->get($id, contain: []);
         if ($this->request->is(['patch', 'post', 'put'])) {
-            $about = $this->Abouts->patchEntity($about, $this->request->getData());
+
+			$data = $this->request->getData();
+
+/*
+			$filename_1 = $data['features_file_1']->getClientFilename();
+			if($filename_1 !== ''){
+				$ext_1 = pathinfo($filename_1, PATHINFO_EXTENSION);	// https://www.geeksforgeeks.org/how-to-extract-extension-from-a-filename-using-php/
+			}
+			
+			$filename_2 = $data['features_file_2']->getClientFilename();
+			if($filename_2 !== ''){
+				$ext_2 = pathinfo($filename_2, PATHINFO_EXTENSION);	// https://www.geeksforgeeks.org/how-to-extract-extension-from-a-filename-using-php/
+			}
+			
+			$filename_3 = $data['features_file_3']->getClientFilename();
+			if($filename_3 !== ''){
+				$ext_3 = pathinfo($filename_3, PATHINFO_EXTENSION);	// https://www.geeksforgeeks.org/how-to-extract-extension-from-a-filename-using-php/
+			}
+*/
+
+
+/*
+			about_file
+			for($i = 1; $i <= 4; $i++){
+				$filename_ . $i = $data['features_file_' . $i]->getClientFilename();
+				if($filename_ . $i !== ''){
+					$ext_ . $i = pathinfo($filename_ . $i, PATHINFO_EXTENSION);	// https://www.geeksforgeeks.org/how-to-extract-extension-from-a-filename-using-php/
+				}
+			}
+*/
+
+            $about = $this->Abouts->patchEntity($about, $data);
             if ($this->Abouts->save($about)) {
+				
+				$i = 0;
+				$filename[$i] = $data['about_file']->getClientFilename();
+				$type[$i] 	 = $data['about_file']->getclientMediaType();					
+				if($filename[$i] !== ''){
+					if($type[$i] == 'image/jpeg'){
+						if(file_exists($this->photopath . 'about.jpg')){
+							unlink($this->photopath . 'about.jpg');
+						}
+						$data['about_file']->moveTo($this->photopath . 'about.jpg');
+					}
+				}
+				
+				for($i = 1; $i <= 4; $i++){
+					$filename[$i] = $data['features_file_' . $i]->getClientFilename();
+					$type[$i] 	  = $data['features_file_' . $i]->getclientMediaType();					
+					if($filename[$i] !== ''){
+						if($type[$i] == 'image/jpeg'){
+							if(file_exists($this->photopath . 'about-' . $i . '.jpg')){
+								unlink($this->photopath . 'about-' . $i . '.jpg');
+							}
+							$data['features_file_' . $i]->moveTo($this->photopath . 'about-' . $i . '.jpg');
+						}
+					}
+				}
+
                 $this->Flash->success(__('The about has been saved.'), ['plugin' => 'JeffAdmin5']);
 
 				return $this->redirect(['action' => 'edit', 1]);

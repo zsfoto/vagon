@@ -3,8 +3,12 @@ declare(strict_types=1);
 
 namespace App\Test\TestCase\Model\Table;
 
+
 use App\Model\Table\AboutsTable;
 use Cake\TestSuite\TestCase;
+use Cake\Core\Configure;
+use Cake\Http\Exception\NotFoundException;
+
 
 /**
  * App\Model\Table\AboutsTable Test Case

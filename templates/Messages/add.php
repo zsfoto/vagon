@@ -14,7 +14,7 @@
 		<section id="contact" class="contact">
 		  <div class="container">
 
-			<div class="row justify-content-center" data-aos="fade-up">
+			<div class="row justify-content-center" data-aos="fade-down">
 			  <div class="col-lg-10">
 				<div class="info-wrap shadow">
 					<div class="row">

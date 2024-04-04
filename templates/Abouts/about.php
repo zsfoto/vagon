@@ -95,22 +95,22 @@
 				<div class="tab-content">
 				  <div class="tab-pane active show" id="tab-1">
 					<figure>
-					  <img src="/img/vagon-1.jpg" alt="" class="img-fluid">
+					  <img src="/img/about/about-1.jpg" alt="" class="img-fluid">
 					</figure>
 				  </div>
 				  <div class="tab-pane" id="tab-2">
 					<figure>
-					  <img src="/img/vagon-2.jpg" alt="" class="img-fluid">
+					  <img src="/img/about/about-2.jpg" alt="" class="img-fluid">
 					</figure>
 				  </div>
 				  <div class="tab-pane" id="tab-3">
 					<figure>
-					  <img src="/img/vagon-3.jpg" alt="" class="img-fluid">
+					  <img src="/img/about/about-3.jpg" alt="" class="img-fluid">
 					</figure>
 				  </div>
 				  <div class="tab-pane" id="tab-4">
 					<figure>
-					  <img src="/img/vagon-4.jpg" alt="" class="img-fluid">
+					  <img src="/img/about/about-4.jpg" alt="" class="img-fluid">
 					</figure>
 				  </div>
 				</div>

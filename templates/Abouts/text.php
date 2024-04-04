@@ -14,7 +14,7 @@
 		  <div class="container">
 
 			<div class="section-title">
-			  <h2 data-aos="fade-up"><?= $text->name ?? __('Text title') ?></h2>
+			  <h2 data-aos="fade-left"><?= $text->name ?? __('Text title') ?></h2>
 			  <p data-aos="fade-up" data-aos-delay="200"><?= $text->body ?? __('Text place...') ?></p>
 			</div>
 
