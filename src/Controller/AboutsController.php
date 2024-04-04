@@ -67,7 +67,7 @@ class AboutsController extends AppController
 		//$cookies = $this->getRequest()->getCookieCollection()->get('csrfToken')->getValue(); // ->has('something');
 		//debug($cookies); die();		
 		//$lang = 'hu';
-		$photocategories = $this->fetchTable('Photocategories')->find('all', conditions: ['lang' => $lang, 'photo_count > ' => 0, 'visible' => true], order: ['pos' => 'asc', 'created' => 'asc']);
+		$photocategories = $this->fetchTable('Photocategories')->find('all', conditions: ['lang' => $lang, 'visible' => true], order: ['pos' => 'asc', 'created' => 'asc']);
 		$photos = $this->fetchTable('Photos')->find('all',
 			contain: [
 				'Photocategories'
