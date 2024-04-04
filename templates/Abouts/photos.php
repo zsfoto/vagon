@@ -4,7 +4,7 @@
 <?php /* foreach($photos as $photo) { ?>
 <?php } */ ?>
 
-<?php debug($photocategories->toArray()); ?>
+<?php //debug($photocategories->toArray()); ?>
 <?php if(isset($photocategories) && !empty($photocategories->toArray())){ ?>
 
 	<main id="main">
